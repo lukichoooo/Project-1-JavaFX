@@ -49,9 +49,9 @@ public class App extends Application {
         dao.connect();
 
 
-        // System.out.print(dao.checkUser("lukaa"));
+        //System.out.print(dao.checkUser("luka"));
 
-        dao.test();
+        // dao.test();
         dao.disconnect();
     }
 

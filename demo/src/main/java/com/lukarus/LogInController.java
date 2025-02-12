@@ -101,43 +101,41 @@ class DAO{
         } catch (Exception e) {e.printStackTrace();}
     }
 
-    //returns true if user is in database
-    public boolean checkUser(String user){
-        String query = "SELECT * FROM users WHERE username ="+user;
+    // returns true if user is in database
+    public boolean checkUser(String user) {
+        String query = "SELECT * FROM users WHERE username = ?";
 
-            try {
-                PreparedStatement pst = con.prepareStatement(query);
-    
-                pst.setString(1, user);
+        try {
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, user);
 
-                ResultSet rs = pst.executeQuery(query);
-                
-                //if rs is empty it means we dont have user in our database
+            ResultSet rs = pst.executeQuery();
 
-                return !rs.isBeforeFirst();
+            // if rs is empty it means we don't have user in our database
+            return rs.next();
 
-            } catch (Exception e) {e.printStackTrace();}
-
-            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
+        return false;
+    }
 
-        public void test() {
-            String query = "select * from users where username = 'luka'";
+        public void test(){
+            String query = "select username from "+table+" where username = 'luka'";
             String S;
             try {
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(query);
                 rs.next();
     
-                String studName = rs.getString(2);
-                S = studName;
-    
+                String studName = rs.getNString(1);
+                S=studName;
+
                 System.out.println(S);
-                st.close();
-            } catch (Exception e) {
-                System.err.println(e);
-            }
+            st.close();
+            } catch (Exception e) {System.err.println(e);}
+
         }
 }
 
