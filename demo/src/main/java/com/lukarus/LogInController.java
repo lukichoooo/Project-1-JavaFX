@@ -60,6 +60,8 @@ public class LogInController {
         if(dao.checkLogInData(signInUsername.getText().toString(),signInPassword.getText().toString())){
             wrongSignIn.setTextFill(Color.GREEN);
             wrongSignIn.setText("Signing in");
+
+            // changeScene();
         }
         else {
             wrongSignIn.setTextFill(Color.RED);
@@ -73,6 +75,11 @@ public class LogInController {
         || signUpPassword.getText().toString().length()>45) {
             wrongSignUp.setTextFill(Color.RED);
             wrongSignUp.setText("Username or Password too long ");
+        } else 
+        if(signUpUsername.getText().toString().length()<4
+        || signUpPassword.getText().toString().length()<4) {
+            wrongSignUp.setTextFill(Color.RED);
+            wrongSignUp.setText("Username or Password too short ");
         }
         else{
         if(!dao.checkUser(signUpUsername.getText().toString())) {
