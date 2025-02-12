@@ -15,8 +15,8 @@
             <Image url="@signInScreen.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="signInButton" layoutX="110.0" layoutY="336.0" mnemonicParsing="false" onAction="#userSignIn" prefHeight="34.0" prefWidth="92.0" style="-fx-background-color: white;" text="Sign in" textAlignment="CENTER" />
-      <Button fx:id="signUpButton" layoutX="122.0" layoutY="495.0" mnemonicParsing="false" onAction="#userSignUp" style="-fx-background-color: white;" text="Sign up" />
+      <Button fx:id="signInButton" layoutX="110.0" layoutY="336.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="92.0" style="-fx-background-color: white;" text="Sign in" textAlignment="CENTER" />
+      <Button fx:id="signUpButton" layoutX="122.0" layoutY="495.0" mnemonicParsing="false" style="-fx-background-color: white;" text="Sign up" />
       <Label layoutX="184.0" layoutY="172.0" text="Sign in or Sign up" textFill="#d0d0d0">
          <font>
             <Font size="18.0" />
@@ -40,7 +40,7 @@
       <Label layoutX="22.0" layoutY="469.0" text="Password:" textFill="#d0d0d0" />
       <Label layoutX="203.0" layoutY="563.0" text="by Luka Khundadze" />
       <Label layoutX="242.0" layoutY="580.0" text="2025" />
-      <Label fx:id="wrongSignIn" layoutX="237.0" layoutY="292.0" prefHeight="25.0" prefWidth="104.0" textFill="RED" />
-      <Label fx:id="wrongSignUp" layoutX="237.0" layoutY="465.0" prefHeight="25.0" prefWidth="104.0" textFill="RED" />
+      <Label fx:id="wrongSignIn" layoutX="294.0" layoutY="273.0" prefHeight="17.0" prefWidth="0.0" textFill="RED" />
+      <Label fx:id="wrongSignUp" layoutX="292.0" layoutY="452.0" prefHeight="17.0" prefWidth="0.0" textFill="RED" />
    </children>
 </AnchorPane>

@@ -14,6 +14,7 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
 
+    // register/login scene
     private static Scene loginScene;
 
     @Override
@@ -27,6 +28,7 @@ public class App extends Application {
         loginStage.show();
     }
 
+
     static void setRoot(String fxml) throws IOException {
         loginScene.setRoot(loadFXML(fxml));
     }
@@ -36,8 +38,18 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
+    public void changeScene(){
+        // idk yet
+    }
+
     public static void main(String[] args) {
         launch();
+
+        //testing stuff
+        DAO dao = new DAO();
+        System.out.print(dao.checkUser("lukaa"));
+
+        dao.test();
     }
 
 }
