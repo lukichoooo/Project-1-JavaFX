@@ -98,7 +98,7 @@ class DAO{
             int count = pst.executeUpdate();
             System.out.println(count + " rows changed");
         pst.close();
-        } catch (Exception e) {System.err.println(e);}
+        } catch (Exception e) {e.printStackTrace();}
     }
 
     //returns true if user is in database
@@ -116,27 +116,28 @@ class DAO{
 
                 return !rs.isBeforeFirst();
 
-            } catch (Exception e) {System.err.println(e);}
+            } catch (Exception e) {e.printStackTrace();}
 
             return true;
         }
 
 
-        public void test(){
-            String query = "select username from "+table+" where rollno="+"1";
+        public void test() {
+            String query = "select * from users where username = 'luka'";
             String S;
             try {
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(query);
                 rs.next();
     
-                String studName = rs.getNString(1);
-                S=studName;
-                
-                System.out.println(S);
-            st.close();
-            } catch (Exception e) {System.err.println(e);}
+                String studName = rs.getString(2);
+                S = studName;
     
+                System.out.println(S);
+                st.close();
+            } catch (Exception e) {
+                System.err.println(e);
+            }
         }
 }
 

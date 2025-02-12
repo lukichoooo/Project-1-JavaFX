@@ -44,12 +44,15 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
-
         //testing stuff
         DAO dao = new DAO();
-        System.out.print(dao.checkUser("lukaa"));
+        dao.connect();
+
+
+        // System.out.print(dao.checkUser("lukaa"));
 
         dao.test();
+        dao.disconnect();
     }
 
 }
