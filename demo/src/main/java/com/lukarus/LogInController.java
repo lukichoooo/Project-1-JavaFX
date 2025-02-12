@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -39,30 +38,57 @@ public class LogInController {
 
     //Sign in button press
     public void userSignIn(){
+        dao.connect();
+
         checkLogIn();
+
+        dao.disconnect();
     }
 
     //Sign up button press
     public void userSignUp(){
+        dao.connect();
+
         createAccount();
+
+        dao.disconnect();
     }
 
 
     public void checkLogIn(){
-        if(signInUsername.getText().toString().equals("luka") && signInPassword.getText().toString().equals("luka123")){
+
+        if(dao.checkLogInData(signInUsername.getText().toString(),signInPassword.getText().toString())){
             wrongSignIn.setTextFill(Color.GREEN);
             wrongSignIn.setText("Signing in");
-        } 
+        }
         else {
             wrongSignIn.setTextFill(Color.RED);
-            wrongSignIn.setText("Incorrect Sign in");
+            wrongSignIn.setText("Incorrect username or password");
         }
     }
 
     public void createAccount(){
-        // if(checkUser()) createAccount()
+
+        if(signUpUsername.getText().toString().length()>40
+        || signUpPassword.getText().toString().length()>45) {
+            wrongSignUp.setTextFill(Color.RED);
+            wrongSignUp.setText("Username or Password too long ");
+        }
+        else{
+        if(!dao.checkUser(signUpUsername.getText().toString())) {
+        dao.createAccountData(signUpUsername.getText().toString(),signUpPassword.getText().toString());
+        wrongSignUp.setTextFill(Color.GREEN);
+        wrongSignUp.setText("Account created");
+        }
+        else {
+            wrongSignUp.setTextFill(Color.RED);
+            wrongSignUp.setText("Username already in use");
+        }
+    }
+
     }
 }
+
 
 // DAO - Data Access Object
 // this class helps me connect and access my MySQL database
@@ -86,7 +112,7 @@ class DAO{
         } catch (SQLException e) {e.printStackTrace();}
     }
 
-    public void createAccount(String user,String pass){
+    public void createAccountData(String user,String pass){
         String query = "insert into "+table+"(username,password) values(?,?);";
         try {
             PreparedStatement pst = con.prepareStatement(query);
@@ -103,7 +129,7 @@ class DAO{
 
     // returns true if user is in database
     public boolean checkUser(String user) {
-        String query = "SELECT * FROM users WHERE username = ?";
+        String query = "SELECT * FROM "+table+" WHERE username = ?";
 
         try {
             PreparedStatement pst = con.prepareStatement(query);
@@ -121,22 +147,27 @@ class DAO{
         return false;
     }
 
-        public void test(){
-            String query = "select username from "+table+" where username = 'luka'";
-            String S;
-            try {
-                Statement st = con.createStatement();
-                ResultSet rs = st.executeQuery(query);
-                rs.next();
-    
-                String studName = rs.getNString(1);
-                S=studName;
+    // returns true if user and password is correct
+    public boolean checkLogInData(String user, String pass){
+        String query = "SELECT * FROM "+table+" WHERE username = ? AND password = ?";
 
-                System.out.println(S);
-            st.close();
-            } catch (Exception e) {System.err.println(e);}
+        try {
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setString(1, user);
+            pst.setString(2, pass);
 
+            ResultSet rs = pst.executeQuery();
+
+            // if rs is empty it means we don't have user in our database
+            return rs.next();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        return false;
+    }
+
 }
 
 
