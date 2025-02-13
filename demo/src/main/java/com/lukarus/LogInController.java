@@ -1,5 +1,6 @@
 package com.lukarus;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,10 +8,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 public class LogInController {
 
@@ -54,20 +60,42 @@ public class LogInController {
         dao.disconnect();
     }
 
-
+    // verfy user and password, open next scene
     public void checkLogIn(){
 
         if(dao.checkLogInData(signInUsername.getText().toString(),signInPassword.getText().toString())){
             wrongSignIn.setTextFill(Color.GREEN);
             wrongSignIn.setText("Signing in");
-
-            // changeScene();
+            
+            changeSceneForum();
         }
         else {
             wrongSignIn.setTextFill(Color.RED);
             wrongSignIn.setText("Incorrect username or password");
         }
     }
+
+    // method to open the actual forum
+    public void changeSceneForum() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/lukarus/forum.fxml"));
+            Parent root = loader.load();
+
+            Stage forumStage = new Stage();
+            forumStage.setScene(new Scene(root));
+            forumStage.setTitle("LGR");
+
+            // Load and set the icon
+            Image icon = new Image(getClass().getResourceAsStream("/com/lukarus/LGRicon.jpg"));
+            forumStage.getIcons().add(icon);
+
+            forumStage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace(); // Print error details to debug if something goes wrong
+        }
+    }
+        
+
 
     public void createAccount(){
 
@@ -79,7 +107,7 @@ public class LogInController {
         if(signUpUsername.getText().toString().length()<4
         || signUpPassword.getText().toString().length()<4) {
             wrongSignUp.setTextFill(Color.RED);
-            wrongSignUp.setText("Username or Password too short ");
+            wrongSignUp.setText("Username or Password too short/empty ");
         }
         else{
         if(!dao.checkUser(signUpUsername.getText().toString())) {

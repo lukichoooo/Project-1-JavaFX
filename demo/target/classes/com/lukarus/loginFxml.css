@@ -1,0 +1,17 @@
+/* styles.css */
+.root {
+    -fx-background-color: #2E3440; /* Dark background */
+}
+
+.button {
+    -fx-text-fill: #3B4252; /* Dark text */
+}
+
+.label {
+    -fx-text-fill: #ECEFF4; /* Light text */
+}
+
+.text-field {
+    -fx-background-color: #3B4252; /* Dark text field */
+    -fx-text-fill: #ECEFF4; /* Light text */
+}

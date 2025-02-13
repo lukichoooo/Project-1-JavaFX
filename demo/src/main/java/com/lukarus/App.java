@@ -22,7 +22,7 @@ public class App extends Application {
         loginScene = new Scene(loadFXML("logIn"));
         loginStage.setScene(loginScene);
         loginStage.setResizable(false);
-        loginStage.setTitle("LGR");
+        loginStage.setTitle("LGR log in");
         Image icon = new Image(getClass().getResourceAsStream("/com/lukarus/LGRicon.jpg"));
         loginStage.getIcons().add(icon);
         loginStage.show();
@@ -38,12 +38,9 @@ public class App extends Application {
         return fxmlLoader.load();
     }
 
-    public void changeScene(){
-        // idk yet
-    }
 
     public static void main(String[] args) {
-        launch();
+        launch();        
     }
 
 }
