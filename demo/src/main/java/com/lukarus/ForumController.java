@@ -3,13 +3,16 @@ package com.lukarus;
 import javafx.fxml.FXML;
 
 public class ForumController {
-    @FXML
+
+    
+
+@FXML
 private void handleHomeButton() {
     System.out.println("Home button clicked!");
 }
 
 @FXML
-private void handleUserButton() {
+private void handleProfileButton() {
     System.out.println("User button clicked!");
 }
 
@@ -22,5 +25,20 @@ private void handleTopReviewsButton() {
 private void handleLogOutButton() {
     System.out.println("Log Out button clicked!");
 }
+
+@FXML
+private void handlePreviousButton() {
+    System.out.println("previus button clicked!");
+}
+
+@FXML
+private void handleNextButton() {
+    System.out.println("next button clicked!");
+}
+
+}
+
+
+class ForumDAO {
 
 }
