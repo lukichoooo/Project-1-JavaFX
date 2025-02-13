@@ -12,4 +12,5 @@ insert into users(username,password) VALUES(
 delete from users where username = "luka";
 
 ALTER TABLE users
-ADD COLUMN role ENUM('user', 'admin') DEFAULT 'user';
+
+ADD COLUMN userBio varchar(720) DEFAULT 'empty';

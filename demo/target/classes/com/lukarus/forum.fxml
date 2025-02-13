@@ -1,20 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <content>
-      <AnchorPane prefHeight="1446.0" prefWidth="720.0" style="-fx-background-color: black; ">
-         <children>
-            <ImageView fitHeight="1261.0" fitWidth="1028.0" layoutX="5.0" layoutY="-3.0" preserveRatio="true">
-               <image>
-                  <Image url="@ForumWallpapers/wp5784435.jpg" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-   </content>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="861.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lukarus.ForumController">
+   <top>
+      <!-- Buttons at the top -->
+      <HBox alignment="CENTER" prefHeight="47.0" prefWidth="720.0" spacing="20" style="-fx-background-color: black; -fx-padding: 7;">
+         <Button onAction="#handleHomeButton" style="-fx-background-color: #4C566A; -fx-text-fill: #ECEFF4; -fx-font-size: 14px;" text="Home" />
+         <Button onAction="#handleUserButton" style="-fx-background-color: #4C566A; -fx-text-fill: #ECEFF4; -fx-font-size: 14px;" text="User" />
+         <Button onAction="#handleTopReviewsButton" style="-fx-background-color: #4C566A; -fx-text-fill: #ECEFF4; -fx-font-size: 14px;" text="Top Reviews" />
+         <Button onAction="#handleLogOutButton" style="-fx-background-color: #4C566A; -fx-text-fill: #ECEFF4; -fx-font-size: 14px;" text="Log Out" />
+      </HBox>
+   </top>
+   <center>
+<ScrollPane hbarPolicy="NEVER" prefWidth="720.0" style="-fx-background-color: #3B4252;" vbarPolicy="AS_NEEDED" BorderPane.alignment="CENTER">
+         <content>
+            <VBox alignment="CENTER" prefHeight="864.0" prefWidth="721.0" style="-fx-background-color: black;">
+               <children>
+                  <ImageView fitHeight="1597.0" fitWidth="721.0" nodeOrientation="INHERIT" preserveRatio="true">
+                     <image>
+                        <Image url="@ForumWallpapers/wp6002266.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+         </content>
 </ScrollPane>
+   </center>
+
+</BorderPane>
