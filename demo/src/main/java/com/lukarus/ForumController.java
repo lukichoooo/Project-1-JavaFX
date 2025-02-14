@@ -1,10 +1,20 @@
 package com.lukarus;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 
-public class ForumController {
 
-    
+public class ForumController implements Initializable {
+
+
+    @FXML
+    private WebView webView;
+
 
 @FXML
 private void handleHomeButton() {
@@ -35,6 +45,16 @@ private void handlePreviousButton() {
 private void handleNextButton() {
     System.out.println("next button clicked!");
 }
+
+@Override
+public void initialize(URL location, ResourceBundle resources) {
+    if (webView != null) {
+        WebEngine webEngine = webView.getEngine();
+        webEngine.load("https://google.com"); // replace this with my webpage (i have to make it first)
+    }
+}
+
+
 
 }
 
